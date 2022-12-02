@@ -13,7 +13,7 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
 
-        user = User.query.filte_by(email=email).first()
+        user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
                 flash('Logged in sucessfully!', category='success')
@@ -41,7 +41,7 @@ def sign_up():
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
-        user = User.query.filte_by(email=email).first()
+        user = User.query.filter_by(email=email).first()
         if user:
             flash('An account with this email already exists.', category='error')
         elif len(email) < 4:
@@ -56,7 +56,7 @@ def sign_up():
             new_user = User(email=email, fullName=fullName, password=generate_password_hash(password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
-            login_user(user, remember=True)
+            login_user(new_user, remember=True)
             flash('Account created!.', category='success')
             return redirect(url_for('views.home'))
 
