@@ -18,7 +18,7 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
-    from .models import User, Note, Session
+    from .models import User, Note, Climb
 
     create_database(app)
 
@@ -38,5 +38,6 @@ def create_database(app):
     #     print('Created Database!')
 
     with app.app_context():
+        # db.drop_all()
         db.create_all(app=app)
         print('Created Database!')

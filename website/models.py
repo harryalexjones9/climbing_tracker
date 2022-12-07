@@ -15,9 +15,9 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     fullName = db.Column(db.String(150))
     notes = db.relationship('Note')
-    sessions = db.relationship('Session')
+    climbs = db.relationship('Climb')
 
-class Session(db.Model):
+class Climb(db.Model):
     id =  db.Column(db.Integer, primary_key=True)
     v0 = db.Column(db.Integer)
     v1 = db.Column(db.Integer)
@@ -30,4 +30,5 @@ class Session(db.Model):
     v8 = db.Column(db.Integer)
     v9 = db.Column(db.Integer)
     v10 = db.Column(db.Integer)
+    date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
