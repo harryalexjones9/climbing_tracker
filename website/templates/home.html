@@ -10,6 +10,143 @@
     <br />
     <br />
 
+    <div><canvas id="barChart"></canvas></div>
+
+    {% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      const ctx = document.getElementById("barChart");
+
+      const barChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: [
+            {% for date in dates %}
+              '{{ date }}',
+              {% endfor %}
+          ],
+          datasets: [
+            {
+              label: "v0",
+              data: [
+                {% for v0_num in v0 %}
+                '{{v0_num}}',
+                {% endfor %}
+              ],
+              backgroundColor: "Grey",
+            },
+            {
+              label: "v1",
+              data: [
+                {% for v1_num in v1 %}
+                '{{v1_num}}',
+                {% endfor %}
+              ],
+              backgroundColor: "Green",
+            },
+            {
+              label: "v2",
+              data: [
+                {% for v2_num in v2 %}
+                '{{v2_num}}',
+                {% endfor %}
+              ],
+              backgroundColor: "Orange",
+            },
+            {
+              label: "v3",
+              data: [
+                {% for v3_num in v3 %}
+                '{{v3_num}}',
+                {% endfor %}
+              ],
+              backgroundColor: "Blue",
+            },
+            {
+              label: "v4",
+              data: [
+                {% for v4_num in v4 %}
+                '{{v4_num}}',
+                {% endfor %}
+              ],
+              backgroundColor: "Purple",
+            },
+            {
+              label: "v5",
+              data: [
+                {% for v5_num in v5 %}
+                '{{v5_num}}',
+                {% endfor %}
+              ],
+              backgroundColor: "Red",
+            },
+            {
+              label: "v6",
+              data: [
+                {% for v6_num in v6 %}
+                '{{v6_num}}',
+                {% endfor %}
+              ],
+              backgroundColor: "Pink",
+            },
+            {
+              label: "v7",
+              data: [
+                {% for v7_num in v7 %}
+                '{{v7_num}}',
+                {% endfor %}
+              ],
+              backgroundColor: "Yellow",
+            },
+            {
+              label: "v8",
+              data: [
+                {% for v8_num in v8 %}
+                '{{v8_num}}',
+                {% endfor %}
+              ],
+              backgroundColor: "Brown",
+            },
+            {
+              label: "v9",
+              data: [
+                {% for v9_num in v9 %}
+                '{{v9_num}}',
+                {% endfor %}
+              ],
+              backgroundColor: "turquoise",
+            },
+            {
+              label: "v10",
+              data: [
+                {% for v10_num in v10 %}
+                '{{v10_num}}',
+                {% endfor %}
+              ],
+              backgroundColor: "rgb(255, 255, 204)",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              stacked: true,
+            },
+            y: {
+              beginAtZero: true,
+              stacked: true,
+            },
+          },
+        },
+      });
+    </script>
+    {% endblock %}
+
+    <br />
+    <br />
+
     <!-- Button trigger modal -->
     <button
       type="button"
