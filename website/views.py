@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from .models import Note, Climb, User
 from . import db
@@ -31,7 +31,7 @@ def home():
     v10 = []
 
     for climb in UserData:
-        dates.append(climb.date)
+        dates.append(climb.date.strftime("%d/%m/%Y"))
         v0.append(climb.v0)
         v1.append(climb.v1)
         v2.append(climb.v2)
@@ -66,5 +66,6 @@ def home():
         db.session.commit()
 
         flash('Session Added!', category='success')
+        return redirect(url_for('views.home'))
 
     return render_template("home.html", user=current_user, dates=dates, v0=v0, v1=v1, v2=v2, v3=v3, v4=v4, v5=v5, v6=v6, v7=v7, b8=v8, v9=v9, v10=v10)
